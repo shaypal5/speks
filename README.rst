@@ -2,7 +2,7 @@ speks
 #####
 .. |PyPI-Status| |PyPI-Versions| |Build-Status| |Codecov| |LICENCE|
 
-A packaged version of the `TwitterGenderPredictor code by JT Wolohan <https://github.com/jtwool/TwitterGenderPredictor>`_, which itself is a Python implementation of Sap et al.'s gender prediction algorithm for Twitter. 
+A packaged version of the `TwitterGenderPredictor code by JT Wolohan <https://github.com/jtwool/TwitterGenderPredictor>`_, which itself is a Python implementation of Sap et al.'s gender prediction algorithm for Twitter. SPEKS stands for Sap, Park, Eichstaedt, Kern and Stilwell, the first five writers of the paper describing the algorithm implemented here. 
 
 .. code-block:: python
 
@@ -49,7 +49,7 @@ Internally, there are some variables that are initialized on the first call to t
 Licensing
 =========
 
-Most for the code was released by `JT Wolohan`_ under the `MPL 2.0 <https://www.mozilla.org/en-US/MPL/2.0/> license`_, and thus I'm releasing my additions under the same license. However, the tokenization code was written by `Christopher Potts`_ and released under the `CC BY-NC-SA 3.0 license <https://creativecommons.org/licenses/by-nc-sa/3.0/>`_, and thus remains released under this license.
+Most for the code was released by `JT Wolohan`_ under the `MPL 2.0 license <https://www.mozilla.org/en-US/MPL/2.0/>`_, and thus I'm releasing my additions under the same license. However, the tokenization code was written by `Christopher Potts`_ and released under the `CC BY-NC-SA 3.0 license <https://creativecommons.org/licenses/by-nc-sa/3.0/>`_, and thus remains released under this license.
 
 
 Contributing
@@ -101,7 +101,11 @@ Additionally, if you update this ``README.rst`` file,  use ``python setup.py che
 Credits
 =======
 
-Algorithm by Sap et al. Original code by `JT Wolohan`_, with tokenization code by `Christopher Potts`_. Packaging by `Shay Palachy <shaypalachy.com>`_.
+Algorithm by `Sap et al <http://wwbp.org/papers/emnlp2014_developingLexica.pdf>`_. Original code by `JT Wolohan`_, with tokenization code by `Christopher Potts`_. Packaging by `Shay Palachy <shaypalachy.com>`_.
+
+Original paper reference:
+*Sap, M., Park, G., Eichstaedt, J., Kern, M., Stillwell, D., Kosinski, M., ... & Schwartz, H. A. (2014). Developing age and gender predictive lexica over social media. In Proceedings of the 2014 Conference on Empirical Methods in Natural Language Processing (EMNLP) (pp. 1146-1151).*
+
 
 .. _`JT Wolohan`: https://github.com/jtwoo://github.com/jtwool 
 .. _`Christopher Potts`: https://web.stanford.edu/~cgpotts/
