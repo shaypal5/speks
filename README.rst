@@ -2,17 +2,25 @@ speks
 #####
 .. |PyPI-Status| |PyPI-Versions| |Build-Status| |Codecov| |LICENCE|
 
-A packaged version of the `TwitterGenderPredictor code by JT Wolohan <https://github.com/jtwool/TwitterGenderPredictor>`_, which itself is a Python implementation of Sap et al.'s gender prediction algorithm for Twitter. SPEKS stands for Sap, Park, Eichstaedt, Kern and Stilwell, the first five writers of the `paper describing the algorithm <http://wwbp.org/papers/emnlp2014_developingLexica.pdf>`_ implemented here. 
+A packaged version, adapted to Python 3, of the `TwitterGenderPredictor code by JT Wolohan <https://github.com/jtwool/TwitterGenderPredictor>`_, which itself is a Python 2 implementation of Sap et al.'s gender prediction algorithm for Twitter. SPEKS stands for Sap, Park, Eichstaedt, Kern and Stilwell, the first five writers of the `paper describing the algorithm <http://wwbp.org/papers/emnlp2014_developingLexica.pdf>`_ implemented here. 
 
 .. code-block:: python
 
   >>> from speks import predict_gender_by_tweets
-  >>> gender = predict_gender_by_tweets(["Please Do.", "Join me in praying!"])
+  >>> gender = predict_gender_by_tweets(" ".join(["Please Do.", "Join me in praying!"]))
 
 
 .. contents::
 
 .. section-numbering::
+
+
+Features
+========
+
+* Supports Python 3.
+* ``pip``-installable.
+* Fully tested.
 
 
 Installation
@@ -23,11 +31,10 @@ Installation
   pip install speks
   
 
-
 Use
 ===
 
-This is a packaged version of the `TwitterGenderPredictor code by JT Wolohan <https://github.com/jtwool/TwitterGenderPredictor>`_, which itself is a Python implementation of Sap et al.'s gender prediction algorithm for Twitter. The algorithm should be 90% accurate given a large sample of users and a reasonable amount of data for each user.
+This is a Python 3, packaged version of the `TwitterGenderPredictor code by JT Wolohan <https://github.com/jtwool/TwitterGenderPredictor>`_, which itself is a Python implementation of Sap et al.'s gender prediction algorithm for Twitter. The algorithm should be 90% accurate given a large sample of users and a reasonable amount of data for each user.
 
 
 You can have the package predict the gender of a Twitter user by providing the ``predict_gender_by_tweets`` function with a list of tweets contents.
@@ -35,21 +42,13 @@ You can have the package predict the gender of a Twitter user by providing the `
 .. code-block:: python
 
   >>> from speks import predict_gender_by_tweets
-  >>> gender = predict_gender_by_tweets(["No touchy", "Trial by fire"])
-
-
-Internally, there are some variables that are initialized on the first call to this function, making it slightly slower than subsequent calls. You can "warm up" the code by explicitly calling the ``init_gender_predictor`` function before any calls to ``predict_gender_by_tweets``.
-
-.. code-block:: python
-
-  >>> from speks import init_gender_predictor
-  >>> init_gender_predictor()
+  >>> gender = predict_gender_by_tweets(" ".join(["No touchy", "Trial by fire"]))
 
 
 Licensing
 =========
 
-Most for the code was released by `JT Wolohan`_ under the `MPL 2.0 license <https://www.mozilla.org/en-US/MPL/2.0/>`_, and thus I'm releasing my additions under the same license. However, the tokenization code was written by `Christopher Potts`_ and released under the `CC BY-NC-SA 3.0 license <https://creativecommons.org/licenses/by-nc-sa/3.0/>`_, and thus remains released under this license.
+Most for the code was released by `JT Wolohan`_ under the `MPL 2.0 license <https://www.mozilla.org/en-US/MPL/2.0/>`_, and thus I'm releasing my additions under the same license. However, the tokenization code - although slightly adapted - was originally written by `Christopher Potts`_ and released under the `CC BY-NC-SA 3.0 license <https://creativecommons.org/licenses/by-nc-sa/3.0/>`_, and thus remains released under this license.
 
 
 Contributing
@@ -101,7 +100,7 @@ Additionally, if you update this ``README.rst`` file,  use ``python setup.py che
 Credits
 =======
 
-Algorithm by `Sap et al <http://wwbp.org/papers/emnlp2014_developingLexica.pdf>`_. Original code by `JT Wolohan`_, with tokenization code by `Christopher Potts`_. Packaging by `Shay Palachy <shaypalachy.com>`_.
+Algorithm by `Sap et al <http://wwbp.org/papers/emnlp2014_developingLexica.pdf>`_. Original code by `JT Wolohan`_, with tokenization code by `Christopher Potts`_. Packaging and Python 3 adaptation by `Shay Palachy <shaypalachy.com>`_.
 
 Original paper reference:
 *Sap, M., Park, G., Eichstaedt, J., Kern, M., Stillwell, D., Kosinski, M., ... & Schwartz, H. A. (2014). Developing age and gender predictive lexica over social media. In Proceedings of the 2014 Conference on Empirical Methods in Natural Language Processing (EMNLP) (pp. 1146-1151).*

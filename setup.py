@@ -7,13 +7,7 @@ import setuptools
 import versioneer
 
 
-INSTALL_REQUIRES = [
-    'numpy',
-    'scipy',
-    'scikit-learn',
-    'pandas',
-    'strct>=0.0.28',
-]
+INSTALL_REQUIRES = []
 TEST_REQUIRES = [
     # testing and coverage
     'pytest', 'coverage', 'pytest-cov',
@@ -28,15 +22,15 @@ setuptools.setup(
     author="Shay Palachy",
     author_email="shay.palachy@gmail.com",
     name='speks',
-    license="MIT",
-    description='Distribution-based anomaly detection for time series.',
+    license="MPL2.0",
+    description='Text-based gender prediction for Twitter.',
     version=versioneer.get_version(),
     cmdclass=versioneer.get_cmdclass(),
     long_description=README,
     url='https://github.com/shaypal5/speks',
     packages=setuptools.find_packages(),
     include_package_data=True,
-    python_requires=">=3.5",
+    python_requires=">=3.4",
     install_requires=INSTALL_REQUIRES,
     extras_require={
         'test': TEST_REQUIRES + INSTALL_REQUIRES,
@@ -49,6 +43,7 @@ setuptools.setup(
         'Development Status :: 4 - Beta',
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python',
+        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Topic :: Software Development :: Libraries',

@@ -39,7 +39,8 @@ English-language tweet.
 __author__ = "Christopher Potts"
 __copyright__ = "Copyright 2011, Christopher Potts"
 __credits__ = []
-__license__ = "Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License: http://creativecommons.org/licenses/by-nc-sa/3.0/"
+__license__ = """Creative Commons Attribution-NonCommercial-ShareAlike 3.0
+Unported License: http://creativecommons.org/licenses/by-nc-sa/3.0/"""
 __version__ = "1.0"
 __maintainer__ = "Christopher Potts"
 __email__ = "See the author's website"
@@ -47,9 +48,11 @@ __email__ = "See the author's website"
 ######################################################################
 
 import re
-import html.entities
-def lmap(f,xs):
-  return list(map(f,xs))
+import html
+
+
+def lmap(f, xs):
+    return list(map(f, xs))
 ######################################################################
 # The following strings are components in the regular expression
 # that is used for tokenizing. It's important that phone_number
@@ -64,12 +67,14 @@ def lmap(f,xs):
 
 # This particular element is used in a couple ways, so we define it
 # with a name:
+
+
 emoticon_string = r"""
     (?:
       [<>]?
       [:;=8]                     # eyes
       [\-o\*\']?                 # optional nose
-      [\)\]\(\[dDpP/\:\}\{@\|\\] # mouth      
+      [\)\]\(\[dDpP/\:\}\{@\|\\] # mouth
       |
       [\)\]\(\[dDpP/\:\}\{@\|\\] # mouth
       [\-o\*\']?                 # optional nose
@@ -85,29 +90,24 @@ regex_strings = (
       (?:            # (international)
         \+?[01]
         [\-\s.]*
-      )?            
+      )?
       (?:            # (area code)
         [\(]?
         \d{3}
         [\-\s.\)]*
-      )?    
+      )?
       \d{3}          # exchange
-      [\-\s.]*   
+      [\-\s.]*
       \d{4}          # base
-    )"""
-    ,
+    )""",
     # Emoticons:
-    emoticon_string
-    ,    
+    emoticon_string,
     # HTML tags:
-     r"""<[^>]+>"""
-    ,
+    r"""<[^>]+>""",
     # Twitter username:
-    r"""(?:@[\w_]+)"""
-    ,
+    r"""(?:@[\w_]+)""",
     # Twitter hashtags:
-    r"""(?:\#+[\w_]+[\w\'_\-]*[\w_]+)"""
-    ,
+    r"""(?:\#+[\w_]+[\w\'_\-]*[\w_]+)""",
     # Remaining word types:
     r"""
     (?:[a-z][a-z'\-_]+[a-z])       # Words with apostrophes or dashes.
@@ -116,18 +116,20 @@ regex_strings = (
     |
     (?:[\w_]+)                     # Words without apostrophes or dashes.
     |
-    (?:\.(?:\s*\.){1,})            # Ellipsis dots. 
+    (?:\.(?:\s*\.){1,})            # Ellipsis dots.
     |
     (?:\S)                         # Everything else that isn't whitespace.
     """
-    )
+)
 
 ######################################################################
 # This is the core tokenizing regex:
-    
-word_re = re.compile(r"""(%s)""" % "|".join(regex_strings), re.VERBOSE | re.I | re.UNICODE)
 
-# The emoticon string gets its own regex so that we can preserve case for them as needed:
+joined_regex_str = r"""(%s)""" % "|".join(regex_strings)
+word_re = re.compile(joined_regex_str, re.VERBOSE | re.I | re.UNICODE)
+
+# The emoticon string gets its own regex so that we can preserve case
+# for them as needed:
 emoticon_re = re.compile(regex_strings[1], re.VERBOSE | re.I | re.UNICODE)
 
 # These are for regularizing HTML entities to Unicode:
@@ -137,69 +139,60 @@ amp = "&amp;"
 
 ######################################################################
 
-class Tokenizer:
-    def __init__(self, preserve_case=False):
-        self.preserve_case = preserve_case
 
-    def tokenize(self, s):
-        """
-        Argument: s -- any string or unicode object
-        Value: a tokenize list of strings; conatenating this list returns the original string if preserve_case=False
-        """        
-        # Try to ensure unicode:
-        #try:
-            #s = str(s,'utf-8')
-        #except UnicodeDecodeError:
-            #s = str(s).encode('string_escape')
-            #s = str(s,'utf-8')
-        # Fix HTML character entitites:
-        s = self.__html2unicode(s)
-        # Tokenize:
-        words = word_re.findall(s)
-        # Possible alter the case, but avoid changing emoticons like :D into :d:
-        if not self.preserve_case:            
-            words = lmap((lambda x : x if emoticon_re.search(x) else x.lower()), words)
-        return words
+def tokenize_no_case_preserving(s):
+    """Tokenizes the given string without preserving letter case.
 
-    def __html2unicode(self, s):
-        """
-        Internal metod that seeks to replace all the HTML entities in
-        s with their corresponding unicode characters.
-        """
-        # First the digits:
-        ents = set(html_entity_digit_re.findall(s))
-        if len(ents) > 0:
-            for ent in ents:
-                entnum = ent[2:-1]
-                try:
-                    entnum = int(entnum)
-                    s = s.replace(ent, unichr(entnum))	
-                except:
-                    pass
-        # Now the alpha versions:
-        ents = set(html_entity_alpha_re.findall(s))
-        ents = filter((lambda x : x != amp), ents)
+    Parameters
+    ----------
+    s : str or unicode object
+        The string to tokenize.
+
+    Returns
+    -------
+    list
+        A tokenized list of strings; conatenating this list returns the
+        original string (except for letter case).
+    """
+    # Try to ensure unicode:
+    # try:
+    #   s = str(s,'utf-8')
+    # except UnicodeDecodeError:
+    #   s = str(s).encode('string_escape')
+    #   s = str(s,'utf-8')
+    # Fix HTML character entitites:
+    s = _html2unicode(s)
+    # Tokenize:
+    words = word_re.findall(s)
+    # Possible alter the case, but avoid changing emoticons like :D into :d:
+    words = lmap((lambda x: x if emoticon_re.search(x) else x.lower()), words)
+    return words
+
+
+def _html2unicode(s):
+    """Replace HTML entities in a string with corresponding unicode characters.
+
+    An internal metod that seeks to replace all the HTML entities in
+    s with their corresponding unicode characters.
+    """
+    # First the digits:
+    ents = set(html_entity_digit_re.findall(s))
+    if len(ents) > 0:
         for ent in ents:
-            entname = ent[1:-1]
-            try:            
-                s = s.replace(ent, unichr(htmlentitydefs.name2codepoint[entname]))
-            except:
-                pass                    
-            s = s.replace(amp, " and ")
-        return s
-
-###############################################################################
-
-#if __name__ == '__main__':
-    #tok = Tokenizer(preserve_case=False)
-    #samples = (
-        #u"RT @ #happyfuncoding: this is a typical Twitter tweet :-)",
-        #u"HTML entities &amp; other Web oddities can be an &aacute;cute <em class='grumpy'>pain</em> >:(",
-        #u"It's perhaps noteworthy that phone numbers like +1 (800) 123-4567, (800) 123-4567, and 123-4567 are treated as words despite their whitespace."
-        #)
-
-    #for s in samples:
-        #print "======================================================================"
-        #print s
-        #tokenized = tok.tokenize(s)
-        #print "\n".join(tokenized)
+            entnum = ent[2:-1]
+            try:
+                entnum = int(entnum)
+                s = s.replace(ent, chr(entnum))
+            except Exception:
+                pass
+    # Now the alpha versions:
+    ents = set(html_entity_alpha_re.findall(s))
+    ents = filter((lambda x: x != amp), ents)
+    for ent in ents:
+        entname = ent[1:-1]
+        try:
+            s = s.replace(ent, chr(html.entities.name2codepoint[entname]))
+        except Exception:
+            pass
+        s = s.replace(amp, " and ")
+    return s
