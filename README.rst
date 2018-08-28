@@ -2,7 +2,7 @@ speks
 #####
 .. |PyPI-Status| |PyPI-Versions| |Build-Status| |Codecov| |LICENCE|
 
-A packaged version of the `TwitterGenderPredictor code by JT Wolohan <https://github.com/jtwool/TwitterGenderPredictor>`_, which itself is a Python implementation of Sap et al.'s gender prediction algorithm for Twitter. SPEKS stands for Sap, Park, Eichstaedt, Kern and Stilwell, the first five writers of the paper describing the algorithm implemented here. 
+A packaged version of the `TwitterGenderPredictor code by JT Wolohan <https://github.com/jtwool/TwitterGenderPredictor>`_, which itself is a Python implementation of Sap et al.'s gender prediction algorithm for Twitter. SPEKS stands for Sap, Park, Eichstaedt, Kern and Stilwell, the first five writers of the `paper describing the algorithm <http://wwbp.org/papers/emnlp2014_developingLexica.pdf>`_ implemented here. 
 
 .. code-block:: python
 
@@ -42,7 +42,7 @@ Internally, there are some variables that are initialized on the first call to t
 
 .. code-block:: python
 
-  >>> from speks import init_gender_predictor 
+  >>> from speks import init_gender_predictor
   >>> init_gender_predictor()
 
 
@@ -107,7 +107,7 @@ Original paper reference:
 *Sap, M., Park, G., Eichstaedt, J., Kern, M., Stillwell, D., Kosinski, M., ... & Schwartz, H. A. (2014). Developing age and gender predictive lexica over social media. In Proceedings of the 2014 Conference on Empirical Methods in Natural Language Processing (EMNLP) (pp. 1146-1151).*
 
 
-.. _`JT Wolohan`: https://github.com/jtwoo://github.com/jtwool 
+.. _`JT Wolohan`: https://github.com/jtwool 
 .. _`Christopher Potts`: https://web.stanford.edu/~cgpotts/
 
 
