@@ -1,0 +1,2 @@
+include versioneer.py
+include speks/_version.py
