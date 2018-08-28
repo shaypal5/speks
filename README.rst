@@ -48,7 +48,7 @@ You can have the package predict the gender of a Twitter user by providing the `
 Licensing
 =========
 
-Most for the code was released by `JT Wolohan`_ under the `MPL 2.0 license <https://www.mozilla.org/en-US/MPL/2.0/>`_, and thus I'm releasing my additions under the same license. However, the tokenization code - although slightly adapted - was originally written by `Christopher Potts`_ and released under the `CC BY-NC-SA 3.0 license <https://creativecommons.org/licenses/by-nc-sa/3.0/>`_, and thus remains released under this license.
+Most of the code was released by `JT Wolohan`_ under the `MPL 2.0 license <https://www.mozilla.org/en-US/MPL/2.0/>`_, and thus I'm releasing my additions under the same license. However, the tokenization code - although slightly adapted - was originally written by `Christopher Potts`_ and released under the `CC BY-NC-SA 3.0 license <https://creativecommons.org/licenses/by-nc-sa/3.0/>`_, and thus remains released under this license.
 
 
 Contributing
