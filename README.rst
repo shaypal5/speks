@@ -2,7 +2,7 @@ speks
 #####
 |PyPI-Status| |PyPI-Versions| |Build-Status| |Codecov| |LICENCE|
 
-A packaged version, adapted to Python 3, of the `TwitterGenderPredictor code by JT Wolohan <https://github.com/jtwool/TwitterGenderPredictor>`_, which itself is a Python 2 implementation of Sap et al.'s gender prediction algorithm for Twitter. SPEKS stands for Sap, Park, Eichstaedt, Kern and Stilwell, the first five writers of the `paper describing the algorithm <http://wwbp.org/papers/emnlp2014_developingLexica.pdf>`_ implemented here. 
+A Python 3, packaged version of the `TwitterGenderPredictor code by JT Wolohan <https://github.com/jtwool/TwitterGenderPredictor>`_, which itself is a Python 2 implementation of Sap et al.'s gender prediction algorithm for Twitter. SPEKS stands for Sap, Park, Eichstaedt, Kern and Stilwell, the first five writers of the `paper describing the algorithm <http://wwbp.org/papers/emnlp2014_developingLexica.pdf>`_ implemented here. 
 
 .. code-block:: python
 
