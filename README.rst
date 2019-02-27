@@ -8,6 +8,7 @@ A Python 3, packaged version of the `TwitterGenderPredictor code by JT Wolohan <
 
   >>> from speks import predict_gender_by_tweets
   >>> gender = predict_gender_by_tweets(" ".join(["Please Do.", "Join me in praying!"]))
+  0
 
 
 .. contents::
@@ -37,12 +38,13 @@ Use
 This is a Python 3, packaged version of the `TwitterGenderPredictor code by JT Wolohan <https://github.com/jtwool/TwitterGenderPredictor>`_, which itself is a Python 2 implementation of Sap et al.'s gender prediction algorithm for Twitter. According to Wolohan, the algorithm should be 90% accurate given a large sample of users and a reasonable amount of data for each user.
 
 
-You can have the package predict the gender of a Twitter user by providing the ``predict_gender_by_tweets`` function with a string containing tweets contents.
+You can have the package predict the gender of a Twitter user by providing the ``predict_gender_by_tweets`` function with a string containing tweets contents. 0 is a prediction of male, 1 is a prediction of female.
 
 .. code-block:: python
 
   >>> from speks import predict_gender_by_tweets
   >>> gender = predict_gender_by_tweets(" ".join(["No touchy", "Trial by fire"]))
+  0
 
 
 Licensing
